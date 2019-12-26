@@ -1,8 +1,9 @@
 // Richard Lee
-
+// rod length
 let length1 = 100;
 let length2 = 100;
 
+// pendulum mass weight
 let mass1 = 1;
 let mass2 = 1;
 
@@ -23,7 +24,8 @@ let display_line = false;
 
 let damp_toggle = false;
 
-window.setup = function() {
+// create window to house the double pendulum
+window.setup = function () {
   let canvas = createCanvas(1000, 800);
   canvas.parent("main-canvas");
   frameRate(30);
@@ -37,76 +39,76 @@ window.setup = function() {
   buffer.translate(originX, originY);
 
   // Sliders
-  $(".length1").on("change", function() {
+  $(".length1").on("change", function () {
     length1 = $(this).val();
     $(".length1-input").val(length1);
   });
-  $(".length2").on("change", function() {
+  $(".length2").on("change", function () {
     length2 = $(this).val();
     $(".length2-input").val(length2);
   });
-  $(".mass1").on("change", function() {
+  $(".mass1").on("change", function () {
     mass1 = $(this).val();
     $(".mass1-input").val(mass1);
   });
-  $(".mass2").on("change", function() {
+  $(".mass2").on("change", function () {
     mass2 = $(this).val();
     $(".mass2-input").val(mass2);
   });
-  $(".gravity").on("change", function() {
+  $(".gravity").on("change", function () {
     gravity = $(this).val();
     $(".gravity-input").val(gravity);
   });
 
   // Buttons
-
-  $(".length1-button").click(function() {
+  $(".length1-button").click(function () {
     length1 = $(".length1-input").val();
     $(".length1").val(length1);
   });
-  $(".length2-button").click(function() {
+  $(".length2-button").click(function () {
     length2 = $(".length2-input").val();
     $(".length2").val(length2);
   });
-  $(".mass1-button").click(function() {
+  $(".mass1-button").click(function () {
     mass1 = $(".mass1-input").val();
     $(".mass1").val(mass1);
   });
-  $(".mass2-button").click(function() {
+  $(".mass2-button").click(function () {
     mass2 = $(".mass2-input").val();
     $(".mass2").val(mass2);
   });
-  $(".gravity-button").click(function() {
+  $(".gravity-button").click(function () {
     g = $(".gravity-input").val();
     $(".gravity").val(g);
   });
 
   // Line toggle
-  $(".line-box").on("change", function() {
+  $(".line-box").on("change", function () {
     display_line = !display_line;
   });
 
   // Dampening toggle
-  $(".damp-box").on("change", function() {
+  $(".damp-box").on("change", function () {
     damp_toggle = !damp_toggle;
   });
 
   // Clear
-  $(".clear-button").click(function() {
+  $(".clear-button").click(function () {
     clearBuffer();
   });
 
   // Reset
-  $(".reset-button").click(function() {
+  $(".reset-button").click(function () {
     reset();
   });
 };
 
-window.draw = function() {
+window.draw = function () {
   background(175);
   imageMode(CORNER);
   image(buffer, 0, 0, width, height);
 
+  // double pendulum formula
   let num1 = -g * (2 * mass1 + mass2) * sin(angle1);
   let num2 = -mass2 * g * sin(angle1 - 2 * angle2);
   let num3 = -2 * sin(angle1 - angle2) * mass2;
