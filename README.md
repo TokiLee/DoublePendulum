@@ -6,7 +6,7 @@ Create a double pendulum simulation that draws its path line to visualise its ch
 ## Getting Started
 
 1. use command "npm install" to install dependencies
-2. use command "npm run develop" to run development build
+2. use command "npm run dev" to run development build
 3. open index.html in dist folder on your browser of choice
 
 ### Prerequisites
